@@ -14,15 +14,20 @@ import java.util.logging.Logger;
  * @author bruna.charnovski
  */
 public class Conexao {
+
     public static void main(String[] args) {
         conect();
     }
-    public static void conect (){
+
+    public static void conect() {
         try {
             Connection c = DriverManager.getConnection("jdbc:sqlite:tds.db");
             Statement stm = c.createStatement();
             // criando uma tabela
             stm.execute("CREATE TABLE IF NOT EXISTS ALUNO(ID INTEGER, NOME VARCHAR(50))");
+
+            // inserindo registros
+            stm.execute("INSERT INTO ALUNO (ID, NOME) VALUES (1,'BRUNA'), (2,'MARCOS')");
         } catch (SQLException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
